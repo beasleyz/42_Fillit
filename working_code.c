@@ -30,6 +30,42 @@ char *create_map(int width)
 	return(map);
 }
 
+int index_of(char *tet, char *map) 
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while(tet[i] == '.')
+		i++;
+	while(map[j] != '\0')
+	{
+		if (map[j] == tet[i] && tet[i] != '\n')
+			return(j - i);
+		j++;
+	}
+	return(0);
+}
+
+char *remove_tet(char *tet, char *map)  // WORKING
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while(tet[i] == '.')
+		i++;
+	while(map[j] != '\0')
+	{
+		if (map[j] == tet[i])
+			map[j] = '.';
+		j++;
+	}
+	return(map);
+}
+
 
 char *place_tet(char *tet, char *map, int r)
 {
@@ -38,14 +74,11 @@ char *place_tet(char *tet, char *map, int r)
 	
 	i = 0;
 	j = 0;
-	while (tet[j] != '\0')
+	while (tet[j] != '\0')  // char *tet1 = "B\nB\nB\nB";  "....\n....\n....\n....\n\0" i = 0
 	{
-		if(map[i + r] == tet[j] && tet[j] != '\n')
-		{
-			i++;
-			j++;
-		}
-		if(tet[j] != '\n' && map[i + r] == '.')
+		printf("i = %d\n", i );
+		printf("j = %d\n", j);
+		if(tet[j] != '\n' && (map[i + r] == '.' || map[i + r] == tet[j]))
 			map[i + r] = tet[j];
 		while(tet[j] == '\n' && map[i] != '\n')
 			i++;
@@ -55,7 +88,34 @@ char *place_tet(char *tet, char *map, int r)
 	return(map);
 }
 
-int check_valid(char *tet, char* map, int r)
+// int check_valid(char *tet, char* map, int r) // doesn't work for vertical lines
+// {
+// 	int i;
+// 	int count;  // char *tet1 = "B\nB\nB\nB";  "....\n....\n....\n....\n\0" i = 0
+// 	int j;
+
+// 	i = 0;
+// 	j = 0;
+// 	count = 0;
+// 	if(map[r] != '.')
+// 		return(0);
+// 	while(map[i + r] != '\0' && tet[j] != '\0')
+// 	{
+// 		if(map[i + r] == '\n' && tet[j] != '\n')
+// 			return(0);
+// 		while (tet[j] == '\n' && map[i] != '\n')
+// 			i++;
+// 		if(map[i + r] == '.' && tet[j] != '.' && tet[j] != '\n')
+// 			count++;
+// 		if(count == 4)
+// 			return(1);
+// 		j++;
+// 		i++;
+// 	}
+// 	return(0);
+// }
+
+int check_valid(char *tet, char* map, int r)  /// doesn't work for vertical line tets
 {
 	int i;
 	int count;
@@ -64,22 +124,25 @@ int check_valid(char *tet, char* map, int r)
 	i = 0;
 	j = 0;
 	count = 0;
-	if(map[r] != '.')
+	printf("char = %c\n", map[i + r]);
+	if(map[r] != '.' && map[r] != '\0')
 		return(0);
-	count++;
 	while(map[i + r] != '\0' && tet[j] != '\0')
 	{
+		printf("char = %c\n", map[i + r]);
 		if(map[i + r] == '\n' && tet[j] != '\n')
 			return(0);
-		while (tet[j] == '\n' && map[i + r] != '\n')
+		while (tet[j] == '\n' && map[i] != '\n') // to make this work for vertical lines change to map[i] != '\n'
 			i++;
 		if(map[i + r] == '.' && tet[j] != '.' && tet[j] != '\n')
 			count++;
 		if(count == 4)
 			return(1);
 		j++;
-		i++;
+		i++;   // char *tet1 = "AAA\nA..";
 	}
+	if(map[i + r] == '\0') // not tested
+		return(2);
 	return(0);
 }
 
@@ -89,19 +152,13 @@ int main()
 	char *tet1 = "AAA\nA..";
 	char *tet2 = "B\nB\nB\nB";
 	char *tet3 = "C.\nCC\n.C";
-	char *tet4 = "D\nD\nD\nD";
+	char *tet4 = "DD.\n.DD";
 	char *tet5 = "E\nE\nE\nE";
-	map = place_tet(tet2, create_map(4), 0);
-	// map = create_map(4);
-	// printf("%s",map );
-	// printf("%d\n", check_valid(tet1, map, 1));
-	// if(check_valid(tet1, map, 1) == 1)
-		map = place_tet(tet1, map, 1);
-	if(check_valid(tet3, map, 7) == 1)
-		map = place_tet(tet3, map, 7);// printf("%s","test" );
-
-	printf("check = %d\n",check_valid(tet3, map, 7) );
-	printf("%s",map );
+	map = create_map(4);
+	map = place_tet(tet1, map, 5);
+	printf("valid = %d\n", check_valid(tet4, map, 20));
+	printf("%s\n", map);
+	printf("%d", index_of(tet2, map));
 }
 
 
