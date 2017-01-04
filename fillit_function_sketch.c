@@ -48,7 +48,7 @@ int index_of(char *tet, char *map)
 	return(0);
 }
 
-int check_valid(char *tet, char* map, int r)  /// doesn't work for vertical line tets
+int check_valid(char *tet, char* map, int r)
 {
 	int i;
 	int count;
@@ -63,7 +63,7 @@ int check_valid(char *tet, char* map, int r)  /// doesn't work for vertical line
 	{
 		if(map[i + r] == '\n' && tet[j] != '\n')
 			return(0);
-		while (tet[j] == '\n' && map[i] != '\n') // to make this work for vertical lines change to map[i] != '\n'
+		while (tet[j] == '\n' && map[i] != '\n')
 			i++;
 		if(map[i + r] == '.' && tet[j] != '.' && tet[j] != '\n')
 			count++;
@@ -95,6 +95,30 @@ char *remove_tet(char *tet, char *map)  // WORKING
 	return(map);
 }
 
+// char *place_tet(char *tet, char *map, int r)
+// {
+// 	int i;
+// 	int j;
+	
+// 	i = 0;
+// 	j = 0;
+// 	while (tet[j] != '\0')
+// 	{
+// 		if(map[i + r] == tet[j] && tet[j] != '\n')
+// 		{
+// 			i++;
+// 			j++;
+// 		}
+// 		if(tet[j] != '\n' && map[i + r] == '.')
+// 			map[i + r] = tet[j];
+// 		while(tet[j] == '\n' && map[i] != '\n')
+// 			i++;
+// 		i++;
+// 		j++;
+// 	}
+// 	return(map);
+// }
+
 char *place_tet(char *tet, char *map, int r)
 {
 	int i;
@@ -102,14 +126,11 @@ char *place_tet(char *tet, char *map, int r)
 	
 	i = 0;
 	j = 0;
-	while (tet[j] != '\0')
+	while (tet[j] != '\0')  // char *tet1 = "B\nB\nB\nB";  "....\n....\n....\n....\n\0" i = 0
 	{
-		if(map[i + r] == tet[j] && tet[j] != '\n')
-		{
-			i++;
-			j++;
-		}
-		if(tet[j] != '\n' && map[i + r] == '.')
+		printf("i = %d\n", i );
+		printf("j = %d\n", j);
+		if(tet[j] != '\n' && (map[i + r] == '.' || map[i + r] == tet[j]))
 			map[i + r] = tet[j];
 		while(tet[j] == '\n' && map[i] != '\n')
 			i++;
@@ -125,32 +146,32 @@ char *fillit(char **tet, char *map, int j, int i, int size)
 	while (tet[i] && check_valid(tet[i], map, j) != 2 && j <= size * (size + 1))
 	{
 		printf("i = %d\n", i);
-		printf("size = %d\n", size);
-		printf("j = %d\n", j);
-		printf("r = %d\n", r);
+		// printf("j = %d\n", j);
 		printf("valid = %d\n", check_valid(tet[i], map, j));
 		printf("%s\n", map);
 		if(check_valid(tet[i], map, j) == 1) // check if there is a vacant slot. If so, place the tetrimino here.
 		{
+			printf("J = %d\n", j);
 			map = place_tet(tet[i], map, j);  // place tetrimino on solution map, and continue with next tetrimino.
+			printf("%s\n",map );
 			j = 0;
 			i++;
 			if(i == 4) // figure out total number of tets, and if tets placed is the same, you have arrived.
 				return(map);
-			printf("%s\n", map);
 		}
 		if (check_valid(tet[i], map, j) == 0) // WORKS
 			j++;
 	}
-	if (i != 4 && check_valid(tet[i], map, j) == 2 && i != 0 )  // I THINK THIS WILL WORK. NEEDS TO BE TESTED WITH NEW CHECK_VALID.
+	printf("%s\n", map);
+	if (check_valid(tet[i], map, j) == 2 && i != 0 ) 
 	{
 		r = index_of(tet[i - 1], map);
 		map = fillit(tet, remove_tet(tet[i - 1], map), r + 1, i - 1, size);
 	}
-	if (tet[i] && check_valid(tet[i], map, j) == 2  && i == 0) // WORKS
+	if (tet[i] && check_valid(tet[i], map, j) == 2  && i == 0) // WORKS ----- increases map size after checking all possible solutions.
 	{
 		free(map);
-		map = fillit(tet, create_map(size + 1), 0, 0, size + 1); // TEST AGAIN WITH NEW CHECK_VALID AND PLACE_TET
+		map = fillit(tet, create_map(size + 1), 0, 0, size + 1); 
 	}
 	return(map);
 }
@@ -161,8 +182,8 @@ int main(int argc, char **argv)
 	char *map;
 	char *tet1 = "AAA\nA..";
 	char *tet2 = "B\nB\nB\nB";
-	char *tet3 = "DDD\n.D.";
-	char *tet4 = "E\nE\nE\nE";
+	char *tet4 = ".DD\nDD.";
+	char *tet3 = "E\nE\nE\nE";
 
 	char **tet = (char**)malloc(sizeof(char*) * 5);
 	tet[0] = tet1;
@@ -173,6 +194,10 @@ int main(int argc, char **argv)
 
 
 	map = fillit(tet, create_map(3), 0, 0, 3);
+	// map = create_map(4);
+	// map = place_tet(tet[0], map, 0);
+	// map = place_tet(tet[1], map, 3);
+	// map = place_tet(tet[2], map, 10);
 	printf("%s\n", map);
 	// loop through each tetrimino to place it in the map.
 		// if a tetrimino fits, continue to next tetrimino
