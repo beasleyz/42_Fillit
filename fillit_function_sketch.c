@@ -70,9 +70,9 @@ int check_valid(char *tet, char* map, int r)
 		if(count == 4)
 			return(1);
 		j++;
-		i++;   // char *tet1 = "AAA\nA..";
+		i++;
 	}
-	if(map[i + r] == '\0') // not tested
+	if(map[i + r] == '\0')
 		return(2);
 	return(0);
 }
@@ -95,30 +95,6 @@ char *remove_tet(char *tet, char *map)  // WORKING
 	return(map);
 }
 
-// char *place_tet(char *tet, char *map, int r)
-// {
-// 	int i;
-// 	int j;
-	
-// 	i = 0;
-// 	j = 0;
-// 	while (tet[j] != '\0')
-// 	{
-// 		if(map[i + r] == tet[j] && tet[j] != '\n')
-// 		{
-// 			i++;
-// 			j++;
-// 		}
-// 		if(tet[j] != '\n' && map[i + r] == '.')
-// 			map[i + r] = tet[j];
-// 		while(tet[j] == '\n' && map[i] != '\n')
-// 			i++;
-// 		i++;
-// 		j++;
-// 	}
-// 	return(map);
-// }
-
 char *place_tet(char *tet, char *map, int r)
 {
 	int i;
@@ -128,8 +104,6 @@ char *place_tet(char *tet, char *map, int r)
 	j = 0;
 	while (tet[j] != '\0')  // char *tet1 = "B\nB\nB\nB";  "....\n....\n....\n....\n\0" i = 0
 	{
-		printf("i = %d\n", i );
-		printf("j = %d\n", j);
 		if(tet[j] != '\n' && (map[i + r] == '.' || map[i + r] == tet[j]))
 			map[i + r] = tet[j];
 		while(tet[j] == '\n' && map[i] != '\n')
@@ -145,18 +119,12 @@ char *fillit(char **tet, char *map, int j, int i, int size)
 	int r;
 	while (tet[i] && check_valid(tet[i], map, j) != 2 && j <= size * (size + 1))
 	{
-		printf("i = %d\n", i);
-		// printf("j = %d\n", j);
-		printf("valid = %d\n", check_valid(tet[i], map, j));
-		printf("%s\n", map);
 		if(check_valid(tet[i], map, j) == 1) // check if there is a vacant slot. If so, place the tetrimino here.
 		{
-			printf("J = %d\n", j);
 			map = place_tet(tet[i], map, j);  // place tetrimino on solution map, and continue with next tetrimino.
-			printf("%s\n",map );
 			j = 0;
 			i++;
-			if(i == 4) // figure out total number of tets, and if tets placed is the same, you have arrived.
+			if (i == 4) // figure out total number of tets, and if tets placed is the same, you have arrived.
 				return(map);
 		}
 		if (check_valid(tet[i], map, j) == 0) // WORKS
@@ -194,10 +162,6 @@ int main(int argc, char **argv)
 
 
 	map = fillit(tet, create_map(3), 0, 0, 3);
-	// map = create_map(4);
-	// map = place_tet(tet[0], map, 0);
-	// map = place_tet(tet[1], map, 3);
-	// map = place_tet(tet[2], map, 10);
 	printf("%s\n", map);
 	// loop through each tetrimino to place it in the map.
 		// if a tetrimino fits, continue to next tetrimino
