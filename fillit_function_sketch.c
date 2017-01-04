@@ -130,7 +130,6 @@ char *fillit(char **tet, char *map, int j, int i, int size)
 		if (check_valid(tet[i], map, j) == 0) // WORKS
 			j++;
 	}
-	printf("%s\n", map);
 	if (check_valid(tet[i], map, j) == 2 && i != 0 ) 
 	{
 		r = index_of(tet[i - 1], map);
