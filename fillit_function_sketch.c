@@ -57,8 +57,8 @@ int check_valid(char *tet, char* map, int r)
 	i = 0;
 	j = 0;
 	count = 0;
-	if(map[r] != '.' && map[r] != '\0')
-		return(0);
+	// if(map[r] != '.' && map[r] != '\0')
+	// 	return(0);
 	while(map[i + r] != '\0' && tet[j] != '\0')
 	{
 		if(map[i + r] == '\n' && tet[j] != '\n')
@@ -119,16 +119,22 @@ char *fillit(char **tet, char *map, int j, int i, int size)
 	int r;
 	while (tet[i] && check_valid(tet[i], map, j) != 2 && j <= size * (size + 1))
 	{
+		printf("valid = %d\n", check_valid(tet[i], map, j) );
+			printf("I = %d\n", i);
+			printf("%s\n", map);
+		while (check_valid(tet[i], map, j) == 0) // WORKS
+		{
+			printf("j = %d\n", j);
+			j++;
+		}
 		if(check_valid(tet[i], map, j) == 1) // check if there is a vacant slot. If so, place the tetrimino here.
 		{
 			map = place_tet(tet[i], map, j);  // place tetrimino on solution map, and continue with next tetrimino.
 			j = 0;
 			i++;
-			if (i == 4) // figure out total number of tets, and if tets placed is the same, you have arrived.
+			if (tet[i] == NULL) // figure out total number of tets, and if tets placed is the same, you have arrived.
 				return(map);
 		}
-		if (check_valid(tet[i], map, j) == 0) // WORKS
-			j++;
 	}
 	if (check_valid(tet[i], map, j) == 2 && i != 0 ) 
 	{
@@ -149,15 +155,39 @@ int main(int argc, char **argv)
 	char *map;
 	char *tet1 = "AAA\nA..";
 	char *tet2 = "B\nB\nB\nB";
-	char *tet4 = ".DD\nDD.";
-	char *tet3 = "E\nE\nE\nE";
+	char *tet3 = ".DD\nDD.";
+	char *tet4 = "E\nE\nE\nE";
+	char *tet5 = "FFF\nF..";
+	char *tet6 = "G\nG\nG\nG";
+	char *tet7 = ".HH\nHH.";
+	char *tet8 = "I\nI\nI\nI";
+	char *tet9 = "JJJ\nJ..";
+	char *tet10 = "K\nK\nK\nK";
+	char *tet11 = ".LL\nLL.";
+	// char *tet12 = "M\nM\nM\nM";
+	// char *tet13 = "NNN\nN..";
+	// char *tet14 = "O\nO\nO\nO";
+	// char *tet15 = ".PP\nPP.";
+	// char *tet16 = "Q\nQ\nQ\nQ";
 
-	char **tet = (char**)malloc(sizeof(char*) * 5);
+	char **tet = (char**)malloc(sizeof(char*) * 12);
 	tet[0] = tet1;
 	tet[1] = tet2;
 	tet[2] = tet3;
 	tet[3] = tet4;
-	tet[4] = NULL;
+	tet[4] = tet5;
+	tet[5] = tet6;
+	tet[6] = tet7;
+	tet[7] = tet8;
+	tet[8] = tet9;
+	tet[9] = tet10;
+	tet[10] = tet11;
+	tet[11] = NULL;
+	// tet[12] = tet13;
+	// tet[13] = tet14;
+	// tet[14] = tet15;
+	// tet[15] = tet16;
+	// tet[16] = NULL;
 
 
 	map = fillit(tet, create_map(3), 0, 0, 3);
