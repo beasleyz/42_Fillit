@@ -14,7 +14,7 @@ Tetris blocks are made to be fit together. The Fillit program abides.
 
 Fillit is a [42 School][1] group project that takes some number of [tetriminos](What-are-tetriminos) and fits them together in the smallest possible square area. I go over the important details of the project below, but if you'd like to see the full specifications you can view the full [project subject][3].
 
-The learning objective of Fillit was for us to gain experience searching for the optimal solution among a huge set of possibilities. It also introduced 42 students to working on programming challenges collaboratively, since it was a group project. My partner for Fillit was [Claudia Davilos][2], and our individual contributions are detailed [here](Contributions)
+The learning objective of Fillit was for us to gain experience searching for the optimal solution among a huge set of possibilities. It also introduced 42 students to working on programming challenges collaboratively, since it was a group project. My partner for Fillit was [Claudia Davila][2], and our individual contributions are detailed [here](Contributions)
 
 ### What are tetriminos?
 
@@ -112,7 +112,7 @@ Enjoy!
 
 ### Contributions
 
-Fillit was a group project that I worked on with [Claudio Davilos][2]. Basically, we approached the project by dividing the work into two parts: 
+Fillit was a group project that I worked on with [Claudio Davila][2]. Basically, we approached the project by dividing the work into two parts: 
 
 * reading the input (which included error checking and storing the data necessary) 
 * and the solving algorithm that would find the smallest square grid and place the tetriminos.
@@ -126,6 +126,6 @@ This was my first (relatively) large-scale collaborative coding project, at leas
 It was a [beautiful moment][4] to join our code together and witness it pass all the tests on the first try :smiley:
 
 [1]: https://www.42.us.org/ 
-[2]: https://www.linkedin.com/in/claudavilarios?authType=NAME_SEARCH&authToken=cd8g&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A122465204%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1485919331720%2Ctas%3Aclaudi
+[2]: https://www.linkedin.com/in/claudia-davila-rios-09801b35
 [3]: https://github.com/beasleyz/42_Fillit/blob/master/fillit.en.pdf
 [4]: http://www.reactiongifs.com/r/wfa.gif
