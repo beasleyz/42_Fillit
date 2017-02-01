@@ -4,11 +4,11 @@ Tetris blocks are made to be fit together. The Fillit program abides.
 
 ### Contents
 
-1. [What is Fillit?]()
-2. [What are tetriminos?]()
-3. [How does Fillit work?]()
-4. [How do I use it?]()
-5. [Contributions](Contributions)
+1. [What is Fillit?](#what-is-fillit)
+2. [What are tetriminos?](#what-are-tetriminos)
+3. [How does Fillit work?](#how-does-fillit-work)
+4. [How do I use it?](#how-do-i-use-it)
+5. [Contributions](#contributions)
 
 ### What is Fillit?
 
