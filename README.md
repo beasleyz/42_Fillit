@@ -62,7 +62,7 @@ III. Fill the map with tetriminos
 
 ```
 
-My main [contribution](#contributions) to the project was the solving algorithm and the helper functions that it requires. The actual code implementation of the algorithm resides in the file [fillitmain.c][] within the function named **fillit**. The other functions called in this algorithm can be found in the file [place_tet.c][].
+My main contribution to the project was the solving algorithm and the helper functions that it requires. The actual code implementation of the algorithm resides in the file [fillitmain.c][] within the function named **fillit**. The other functions called in this algorithm can be found in the file [place_tet.c][].
 
 ### How do I use it?
 
