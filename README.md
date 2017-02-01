@@ -14,7 +14,7 @@ Tetris blocks are made to be fit together. The Fillit program abides.
 
 Fillit is a [42 School][1] group project that takes some number of [tetriminos](What-are-tetriminos) and fits them together in the smallest possible square area. I go over the important details of the project below, but if you'd like to see the full specifications you can view the full [project subject][3].
 
-The learning objective of Fillit was for us to gain experience searching for the optimal solution among a huge set of possibilities. It also introduced 42 students to working on programming challenges collaboratively, since it was a group project. My partner for Fillit was [Claudia Davila][2], and our individual contributions are detailed [here](Contributions)
+The learning objective of Fillit was for us to gain experience searching for the optimal solution among a huge set of possibilities. It also introduced 42 students to working on programming challenges collaboratively, since it was a group project. My partner for Fillit was [Claudia Davila][2], and our individual contributions are detailed [here](#contributions)
 
 ### What are tetriminos?
 
@@ -62,7 +62,7 @@ III. Fill the map with tetriminos
 
 ```
 
-My main [contribution]() to the project was the solving algorithm and the helper functions that it requires. The actual code implementation of the algorithm resides in the file [fillitmain.c][] within the function named **fillit**. The other functions called in this algorithm can be found in the file [place_tet.c][].
+My main [contribution](#contributions) to the project was the solving algorithm and the helper functions that it requires. The actual code implementation of the algorithm resides in the file [fillitmain.c][] within the function named **fillit**. The other functions called in this algorithm can be found in the file [place_tet.c][].
 
 ### How do I use it?
 
@@ -74,10 +74,10 @@ You'll first need to clone the repository and cd into the directory:
 	cd Fillit
 
 Then, you simply need to call `make` and an executable called fillit will be created.
-From here, you can run `fillit` with one of the test files I've included named `smalltest` and `bigtest`:
+From here, you can run `fillit` with one of the test files I've included named `smalltest` and `bigtest` in the directory `testfiles`:
 
 	make
-	./fillit test1
+	./fillit testfiles/smalltest
 
 For the **smalltest** file, your output should look like this:
 
@@ -100,7 +100,7 @@ The **bigtest** file contains 21 tetriminos and should produce:
 	.T.RRS...U
 	.TT.SSSUUU
 
-Alternatively, if you'd like to go a little deeper and do some experimenting you can! I've added some tools that will help you to easily create your own test files with any number of tetriminos (less than 26 of course). Then you can run `./fillit` with the file you've created.
+Alternatively, if you'd like to go a little deeper and do some experimenting you can! I've added some tools that will help you to easily create your own test files with any number of tetriminos (no more than 26 of course). Then you can run `./fillit` with the file you've created.
 
 To do so simply input the following commands:
 
