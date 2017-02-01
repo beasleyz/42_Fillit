@@ -12,9 +12,9 @@ Tetris blocks are made to be fit together. The Fillit program abides.
 
 ### What is Fillit?
 
-Fillit is a [42 School][1] group project that takes some number of [tetriminos](What-are-tetriminos) and fits them together in the smallest possible square area. I go over the important details of the project below, but if you'd like to see the full specifications you can view the full [project subject][3].
+Fillit is a [42 School][1] group project that takes some number of [tetriminos](#what-are-tetriminos) and fits them together in the smallest possible square area. I go over the important details of the project below, but if you'd like to see the full specifications you can view the full [project subject][3].
 
-The learning objective of Fillit was for us to gain experience searching for the optimal solution among a huge set of possibilities. It also introduced 42 students to working on programming challenges collaboratively, since it was a group project. My partner for Fillit was [Claudia Davila][2], and our individual contributions are detailed [here](#contributions)
+The learning objective of Fillit was for us to gain experience searching for the optimal solution among a huge set of possibilities. It also introduced 42 students to working on programming challenges collaboratively, since it was a group project. My partner for Fillit was [Claudia Davila][2], and our individual contributions are detailed in the contributions section.
 
 ### What are tetriminos?
 
