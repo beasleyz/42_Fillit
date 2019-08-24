@@ -112,7 +112,7 @@ Enjoy!
 
 ### Contributions
 
-Fillit was a group project that I worked on with [Claudio Davila][2]. Basically, we approached the project by dividing the work into two parts: 
+Fillit was a group project that I worked on with [Claudia Davila][2]. Basically, we approached the project by dividing the work into two parts: 
 
 * reading the input (which included error checking and storing the data necessary) 
 * and the solving algorithm that would find the smallest square grid and place the tetriminos.
